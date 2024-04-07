@@ -1,5 +1,5 @@
 <template>
-  <div class="header-container">购物车案例</div>
+  <div class="header-container">我的购物车</div>
 </template>
 
 <script>

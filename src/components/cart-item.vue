@@ -13,9 +13,9 @@
         <span class="price">￥{{ item.price }}</span>
         <div class="btns">
           <!-- 按钮区域 -->
-          <button class="btn btn-light">-</button>
+          <button class="btn btn-light" @click="btnClick(-1)">-</button>
           <span class="count">{{ item.count }}</span>
-          <button class="btn btn-light">+</button>
+          <button class="btn btn-light" @click="btnClick(1)">+</button>
         </div>
       </div>
     </div>
@@ -25,7 +25,17 @@
 <script>
 export default {
   name: 'CartItem',
-  methods: {},
+  methods: {
+    btnClick (step) {
+      const newCount = this.item.count + step
+      const id = this.item.id
+      if (newCount < 1) return
+      this.$store.dispatch('cart/updateCountAsync', {
+        newCount,
+        id
+      })
+    }
+  },
   props: {
     item: {
       type: Object,
